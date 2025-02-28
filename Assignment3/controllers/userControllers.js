@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require('fs');
 
-const filePath = path.join(__dirname, '../users.json');
+const filePath = path.join(__dirname, '../data/users.json');
 
 exports.homePageForm = (req,res,next) => {
     res.status(200).render(path.join(__dirname, '../views/homeViews.ejs'));
