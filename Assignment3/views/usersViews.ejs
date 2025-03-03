@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title>Users List</title>
 </head>
 <body>
     <h1>List of Users: </h1>
-    <ul>
-        <% arr.forEach((curr) => { %>
-            <li><%= curr %></li>
-        <% }) %>
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>#ID</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% arr.forEach((curr) => { %>
+                <tr>
+                    <td><%= curr.id %></td>
+                    <td><%= curr.fname + " " + curr.lname %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
 </body>
 </html>

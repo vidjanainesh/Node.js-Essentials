@@ -1,0 +1,99 @@
+/* General Styles */
+body {
+    background-color: #121826; /* Dark Blue Background */
+    color: #ffffff; /* White Text */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+h1 {
+    color: #4a90e2; /* Light Blue */
+    margin-top: 20px;
+}
+
+/* Forms */
+form {
+    background: #1c2333; /* Darker Blue */
+    padding: 20px;
+    margin: 20px auto;
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #4a90e2;
+    border-radius: 5px;
+    background: #1e2a3a;
+    color: white;
+}
+
+button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #357ab7;
+}
+
+/* Links */
+a {
+    color: #4a90e2;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Table Styles */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: #1c2333;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #4a90e2;
+    text-align: center;
+}
+
+th {
+    background-color: #4a90e2;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #16202f;
+}
+
+tr:nth-child(odd) {
+    background: #1e2a3a;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    form {
+        width: 80%;
+    }
+
+    table {
+        width: 100%;
+    }
+}

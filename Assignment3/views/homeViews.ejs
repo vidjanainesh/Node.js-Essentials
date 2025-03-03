@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title>Home</title>
 </head>
 <body>
@@ -18,10 +19,10 @@
     <br>
     <a href = '/users'>View Users</a>
 
-    <form action='/edit/:id' method="POST">
+    <form onsubmit="redirectToEdit(event)">
         <br>
         <br>
-        <input type="number" name="editId" placeholder="Enter ID to edit"> 
+        <input type="number" id="editId" name="editId" placeholder="Enter ID to edit"> 
         <button type="submit">Edit User</button> 
     </form>
 
@@ -31,5 +32,17 @@
         <input type="number" name="deleteId" placeholder="Enter ID to delete"> 
         <button type="submit">Delete User</button> 
     </form>
+
+    <script>
+        function redirectToEdit(event) {
+            event.preventDefault();
+            let userId = document.querySelector('#editId').value;
+            if (!userId) {
+                alert("Please enter an ID");
+                return;
+            }
+            window.location.href = `/edit/${userId}`;
+        }
+    </script>
 </body>
 </html>

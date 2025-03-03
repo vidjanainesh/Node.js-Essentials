@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title>Edit User</title>
+
 </head>
 <body>
-    <form action="/edit-user" method="POST">
+    <form action="/edit/<%= user.id %>" method="POST">
         <input type="number" name="id" value="<%= user.id %>" readonly>
         <input type="text" name="fname" value="<%= user.fname %>">
         <input type="text" name="lname" value="<%= user.lname %>">

@@ -1,23 +1,20 @@
 const express = require('express');
 
-const homeRoutes = require('./routes/homeRoutes');
-const addUserRoutes = require('./routes/addUserRoutes');
-const displayUserRoutes = require('./routes/displayUserRoutes');
-const editUserRoutes = require('./routes/editUserRoutes');
-const deleteUserRoutes = require('./routes/deleteUserRoutes');
+const addUserRoutes = require('./routes/UserRoutes');
 
 const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
+app.use(express.static('public'));
 
 app.use(addUserRoutes);
-app.use(displayUserRoutes);
-app.use(editUserRoutes);
-app.use(deleteUserRoutes);
-app.use(homeRoutes);
 
+app.use((req,res) => {
+    res.status(404 ).send(`<h1>404: Page not found</h1><a href="/">Go to Home</a>`);
+})
 
 app.listen(3000, ()=>{
     console.log("Server Listening on PORT 3000");
 });
+
