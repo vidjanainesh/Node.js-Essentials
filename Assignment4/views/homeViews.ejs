@@ -27,10 +27,10 @@
         <button type="submit">Edit User</button> 
     </form>
 
-    <form action='/delete/:id' method="POST">
+    <form onsubmit="redirectToDelete(event)">
         <br>
         <br>
-        <input type="number" name="deleteId" placeholder="Enter ID to delete" required> 
+        <input type="number" id="deleteId"  name="deleteId" placeholder="Enter ID to delete" required> 
         <button type="submit">Delete User</button> 
     </form>
 
@@ -39,10 +39,20 @@
             event.preventDefault();
             let userId = document.querySelector('#editId').value;
             if (!userId) {
-                alert("Please enter an ID");
+                alert("Please enter an ID to edit");
                 return;
             }
             window.location.href = `/edit/${userId}`;
+        }
+
+        function redirectToDelete(event) {
+            event.preventDefault();
+            let userId = document.querySelector('#deleteId').value;
+            if (!userId) {
+                alert("Please enter an ID");
+                return;
+            }
+            window.location.href = `/delete/${userId}`;
         }
     </script>
 </body>

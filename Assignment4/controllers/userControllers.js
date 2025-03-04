@@ -71,8 +71,9 @@ exports.editUser = (req,res,next) => {
 // Deletes a given user
 exports.deleteUser = (req,res,next) => {
 
+    console.log(req.params.id);
     User.destroy({
-        where: { userid: req.body.deleteId }
+        where: { userid: Number(req.params.id) }
     })
     .then(data => {            
         if(!data){

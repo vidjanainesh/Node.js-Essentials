@@ -23,7 +23,7 @@ router.get('/edit/:id', userControllers.editUserForm);
 router.post('/edit/:id', userControllers.editUser);
 
 // Route to handle user deletion
-router.post('/delete/:id', userControllers.deleteUser);
+router.get('/delete/:id', userControllers.deleteUser);
 
 // Route for the homepage
 router.get('/', userControllers.homePage);
