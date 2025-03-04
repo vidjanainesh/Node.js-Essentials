@@ -3,15 +3,12 @@ const fs = require('fs');
 
 const usersfilePath = path.join(__dirname, '../data/users.json');
 
-exports.homePageForm = (req,res,next) => {
-    res.status(200).render('homeViews');
-}
-
+// Function to read and parse user data from JSON file
 getUser = () => {
     let array = [];
     const data = fs.readFileSync(usersfilePath);
 
-    if(data){
+    if (data) {
         try {
             array = JSON.parse(data);
         } catch (error) {
@@ -21,46 +18,51 @@ getUser = () => {
     return array;
 }
 
-exports.addUser = (req,res,next) => {
-    
-    let arr = getUser();
+// Render the home page
+exports.homePageForm = (req, res, next) => {
+    res.status(200).render('homeViews');
+}
 
+// Add a new user to the JSON file
+exports.addUser = (req, res, next) => {
+    let arr = getUser();
     arr.push(req.body);
-    arr.sort((a, b) => Number(a.id) - Number(b.id));
+    arr.sort((a, b) => Number(a.id) - Number(b.id)); // Sort users by ID
     fs.writeFileSync(usersfilePath, JSON.stringify(arr, null, 2));
     res.redirect('/');
-
 }
 
-exports.displayUser = (req,res,next) => {
-    
+// Display all users
+exports.displayUser = (req, res, next) => {
     let arr = getUser();
-    if(arr.length === 0) return res.send(`<script>alert("No Users Found"); window.location.href = '/';</script>`);
+    if (arr.length === 0) 
+        return res.send(`<script>alert("No Users Found"); window.location.href = '/';</script>`);
     
-    res.render('usersViews', {arr : arr});
-
+    res.render('usersViews', { arr: arr });
 }
 
-exports.editUserForm = (req,res,next) => {
-    
+// Render the edit user form
+exports.editUserForm = (req, res, next) => {
     let arr = getUser();
-    if(arr.length === 0) return res.send(`<script>alert("No Users Found"); window.location.href = '/';</script>`);
+    if (arr.length === 0) 
+        return res.send(`<script>alert("No Users Found"); window.location.href = '/';</script>`);
     
     const user = arr.find((curr) => curr.id == req.params.id);
-    if(!user){
+    if (!user) {
         return res.send(`<script>alert("No Such Users Found"); window.location.href = '/';</script>`);
     }
 
-    res.render('editUserViews', {user : user});
+    res.render('editUserViews', { user: user });
 }
 
-exports.editUser = (req,res,next) => {
-
+// Edit and update user details
+exports.editUser = (req, res, next) => {
     let arr = getUser();
-    if(arr.length === 0) return res.send(`<script>alert("No Users Found"); window.location.href = '/';</script>`);
+    if (arr.length === 0) 
+        return res.send(`<script>alert("No Users Found"); window.location.href = '/';</script>`);
 
     arr.forEach((curr) => {
-        if(curr.id === req.body.id){
+        if (curr.id === req.body.id) {
             curr.fname = req.body.fname;
             curr.lname = req.body.lname;
         }
@@ -70,14 +72,15 @@ exports.editUser = (req,res,next) => {
     res.redirect('/');
 }
 
-exports.deleteUser = (req,res,next) => {
-
+// Delete a user from the JSON file
+exports.deleteUser = (req, res, next) => {
     let arr = getUser();
-    if(arr.length === 0) return res.send(`<script>alert("No Users Found"); window.location.href = '/';</script>`);
+    if (arr.length === 0) 
+        return res.send(`<script>alert("No Users Found"); window.location.href = '/';</script>`);
     
     let index = arr.findIndex((curr) => curr.id == req.body.deleteId);
     console.log(index);
-    arr.splice(index,1);
+    arr.splice(index, 1);
     fs.writeFileSync(usersfilePath, JSON.stringify(arr, null, 2));
 
     return res.send(`<script>alert("User Deleted"); window.location.href = '/';</script>`);

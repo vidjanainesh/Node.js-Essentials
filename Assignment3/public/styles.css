@@ -1,7 +1,6 @@
-/* General Styles */
 body {
-    background-color: #121826; /* Dark Blue Background */
-    color: #ffffff; /* White Text */
+    background-color: #121826; 
+    color: #ffffff; 
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
@@ -10,13 +9,13 @@ body {
 
 /* Header */
 h1 {
-    color: #4a90e2; /* Light Blue */
+    color: #4a90e2; 
     margin-top: 20px;
 }
 
 /* Forms */
 form {
-    background: #1c2333; /* Darker Blue */
+    background: #1c2333;
     padding: 20px;
     margin: 20px auto;
     width: 50%;
