@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Home</title>
+</head>
+<body>
+    <h1>USER MANAGEMENT SYSTEM</h1>
+    
+    <a href="/create"> Create User </a>
+
+    <br>
+    <br>
+    <a href = '/users'>View Users</a>
+
+    <form onsubmit="redirectToEdit(event)">
+        <br>
+        <br>
+        <input type="number" id="editId" name="editId" placeholder="Enter ID to edit"> 
+        <button type="submit">Edit User</button> 
+    </form>
+
+    <form action='/delete/:id' method="POST">
+        <br>
+        <br>
+        <input type="number" name="deleteId" placeholder="Enter ID to delete"> 
+        <button type="submit">Delete User</button> 
+    </form>
+
+    <script>
+        function redirectToEdit(event) {
+            event.preventDefault();
+            let userId = document.querySelector('#editId').value;
+            if (!userId) {
+                alert("Please enter an ID");
+                return;
+            }
+            window.location.href = `/edit/${userId}`;
+        }
+    </script>
+</body>
+</html>
