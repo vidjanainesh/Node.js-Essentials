@@ -2,23 +2,18 @@ const { Sequelize } = require('sequelize');
 
 const sequelize = require('../config/database');
 
-const User = sequelize.define('user', {
-    userid : {
+const Order = sequelize.define('order', {
+    orderid: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
 
-    fname: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-
-    lname : {
-        type: Sequelize.STRING,
+    total_amount: {
+        type: Sequelize.INTEGER,
         allowNull: false
     }
 });
 
-module.exports = User;
+module.exports = Order;

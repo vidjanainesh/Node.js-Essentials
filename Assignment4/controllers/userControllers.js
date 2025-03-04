@@ -1,15 +1,17 @@
 const User = require('../models/user');
+const Order = require('../models/order');
 
 // Home Page (to render the home page)
-exports.homePageForm = (req,res,next) => {
+exports.homePage = (req,res,next) => {
     res.status(200).render('homeViews');
 }
 
-// User Form
+// Add User Form (to get the add user form)
 exports.addUserForm = (req,res,next) => {
     res.render('createUserViews');
 }
- 
+
+// Adds User to the database
 exports.addUser = (req,res,next) => {
 
     User.create({
@@ -23,19 +25,21 @@ exports.addUser = (req,res,next) => {
     res.redirect('/');
 }
 
+// Displays the users (in ascending order)
 exports.displayUser = (req,res,next) => {
     
     User.findAll({
-        order: [['id', 'ASC']]
+        order: [['userid', 'ASC']]
     })
-        .then((data) => res.render('usersViews', {arr : data}))
-        .catch((err) => console.log(err));
+    .then((data) => res.render('usersViews', {arr : data}))
+    .catch((err) => console.log(err));
 
 }
 
+// Edit User Form (to get the edit user form)
 exports.editUserForm = (req,res,next) => {
     
-    User.findOne({ where: {id: req.params.id} })
+    User.findOne({ where: {userid: req.params.id} })
         .then(data => {
             
             if(!data){
@@ -49,6 +53,7 @@ exports.editUserForm = (req,res,next) => {
 
 }
 
+// Edits the user with the given id
 exports.editUser = (req,res,next) => {
 
     User.update(
@@ -57,7 +62,7 @@ exports.editUser = (req,res,next) => {
             lname: req.body.lname
         },
         { where: {
-            id: req.body.id
+            userid: req.body.id
         }}
     )
     .then(() => console.log("User Updated"))
@@ -66,11 +71,12 @@ exports.editUser = (req,res,next) => {
     res.redirect('/');
 }
 
+// Deletes a given user
 exports.deleteUser = (req,res,next) => {
 
-    User.destroy({where: {
-        id: req.body.deleteId
-    }})
+    User.destroy({
+        where: { userid: req.body.deleteId }
+    })
     .then(data => {            
         if(!data){
             return res.send(`<script>alert("No Users Found"); window.location.href = '/';</script>`);

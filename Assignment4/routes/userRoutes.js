@@ -17,6 +17,6 @@ router.post('/edit/:id', userControllers.editUser);
 
 router.post('/delete/:id', userControllers.deleteUser);
 
-router.get('/', userControllers.homePageForm);
+router.get('/', userControllers.homePage);
 
 module.exports = router;
