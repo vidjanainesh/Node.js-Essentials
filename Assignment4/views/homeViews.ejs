@@ -11,16 +11,13 @@
     
     <a href="/create"> Create User </a>
 
-    <br>
-    <br>
+    <br><br>    
     <a href = '/users'>View Users</a>
 
-    <br>
-    <br>
+    <br><br>
     <a href = '/add-orders'>Create Orders</a>
     
-    <br>
-    <br>
+    <br><br>
     <a href = '/view-orders'>View Orders</a>
 
     <form onsubmit="redirectToEdit(event)">
@@ -33,7 +30,7 @@
     <form action='/delete/:id' method="POST">
         <br>
         <br>
-        <input type="number" name="deleteId" placeholder="Enter ID to delete"> 
+        <input type="number" name="deleteId" placeholder="Enter ID to delete" required> 
         <button type="submit">Delete User</button> 
     </form>
 

@@ -1,5 +1,4 @@
 const User = require('../models/user');
-const Order = require('../models/order');
 
 // Home Page (to render the home page)
 exports.homePage = (req,res,next) => {
@@ -33,12 +32,11 @@ exports.displayUser = (req,res,next) => {
     })
     .then((data) => res.render('usersViews', {arr : data}))
     .catch((err) => console.log(err));
-
 }
 
 // Edit User Form (to get the edit user form)
 exports.editUserForm = (req,res,next) => {
-    
+
     User.findOne({ where: {userid: req.params.id} })
         .then(data => {
             
@@ -50,7 +48,6 @@ exports.editUserForm = (req,res,next) => {
             }
         })
         .catch(err => console.log(err));
-
 }
 
 // Edits the user with the given id

@@ -22,19 +22,5 @@ exports.validateUser = (req,res,next) => {
             </script>    
         `);
     }
-
-    // User.findOne({ where: {id: req.body.id}})
-    //     .then(() => {
-    //         return res.send(`
-    //             <html>
-    //                 <script>
-    //                     alert("User with given ID already exists!");
-    //                     window.location.href = "/";
-    //                 </script>
-    //             </html>       
-    //         `);
-    //     })
-    //     .catch((err) => console.log(err));
-    
     next();
 }

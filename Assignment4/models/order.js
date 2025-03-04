@@ -2,6 +2,7 @@ const { Sequelize } = require('sequelize');
 
 const sequelize = require('../config/database');
 
+// Define the Order model with fields and constraints
 const Order = sequelize.define('order', {
     orderid: {
         type: Sequelize.INTEGER,

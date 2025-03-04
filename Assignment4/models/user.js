@@ -2,6 +2,7 @@ const { Sequelize } = require('sequelize');
 
 const sequelize = require('../config/database');
 
+// Define the User model with fields and constraints
 const User = sequelize.define('user', {
     userid : {
         type: Sequelize.INTEGER,

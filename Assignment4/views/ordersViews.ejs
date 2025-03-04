@@ -22,11 +22,11 @@
                 <% arr.forEach((curr) => { %>
                     <tr>
                         <td><%= curr.orderid %></td>
-                        <td><%= curr.total_amount %></td>
+                        <td>€ <%= curr.total_amount %></td>
                         <td><%= curr.userid %></td>
                     </tr>
                 <% }) %>
-
+                
             <% } else{ %>
 
                 <tr>
@@ -35,9 +35,7 @@
                     <td> * </td>
                 </tr>
 
-            <% } %>
-            
-            
+            <% } %>           
         </tbody>
     </table>
 </body>
