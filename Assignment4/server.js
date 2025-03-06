@@ -3,6 +3,7 @@ const sequelize = require('./config/database');
 
 const userRoutes = require('./routes/userRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+
 const User = require('./models/user');
 const Order = require('./models/order');
 
