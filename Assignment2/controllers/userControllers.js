@@ -1,20 +1,13 @@
-const express = require('express');
-
-// const users = require('../users.json');
-
 const path = require('path');
 const fs = require('fs');
 const filePath = path.join(__dirname, '../data/users.json');
 
-const router = express.Router();
-
-//Create User
+// To get a form for creating a new user
 exports.userInputForm = (req,res) => {
     res.sendFile(path.join(__dirname, '../', 'views', 'createUserViews.html'));
-    // console.log("Inside create user");
 }
 
-//Input User into users.json
+// To input the new user into users.json
 exports.createUser = (req,res) => {
     
     let arr = [];
@@ -28,29 +21,29 @@ exports.createUser = (req,res) => {
     }
     
     arr.push(req.body);
-    // JSON.stringify(value, replacer, space)
     fs.writeFileSync(filePath, JSON.stringify(arr,null,2), 'utf8');
     res.redirect('/');
 }
 
-//View users
+//To view the users
 exports.viewUsers = (req,res) => {
-    // res.sendFile(path.join(__dirname, '../', 'views', 'viewUserViews.html'));
     fs.readFile(filePath, (err,data) => {
         if(!data.toString()) res.redirect("/create");
         else{
             let arr = JSON.parse(data);
             arr = arr.map((curr) => `<li>${curr.fname} ${curr.sname}</l1>`);
 
+            let users= '';
+            for(let i=0; i<arr.length; i++){
+                users += arr[i];
+            }
             res.send(`
                 <link rel="stylesheet" href="/styles.css">
                 <h1>List of Users: </h1>
                 <ul>
-                    ${[...arr]}
+                    ${users}
                 </ul>
             `);
-        }
-        
-                
+        }               
     });
 }
