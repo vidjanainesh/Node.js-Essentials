@@ -4,6 +4,7 @@ const requestHandler = (req, res) => {
     const url = req.url;
     const method = req.method;
         
+    // To display the home page
     if(url === '/'){
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/html');
@@ -26,6 +27,7 @@ const requestHandler = (req, res) => {
         res.end();
     }
 
+    // To add a new user
     if(url === '/add-user' && method === 'POST'){
         const name = [];
         req.on("data", (chunk) => {
@@ -33,16 +35,11 @@ const requestHandler = (req, res) => {
         })        
 
         return req.on("end", () => {
-            // console.log(name);
             const parsedBody = Buffer.concat(name).toString().replace(/\+/g, ' ');
-            // console.log(parsedBody);
             let fullName = parsedBody.split('&');
             const fname = fullName[0].split('=')[1];
             const sname = fullName[1].split('=')[1];
             fullName = fname + ' ' + sname;
-
-
-            // console.log(message);
 
             if(!fname || !sname){
                 res.writeHead(400, {"Content-Type":"text/plain"});
@@ -72,17 +69,15 @@ const requestHandler = (req, res) => {
                         return res.end();
                     });
                 }               
-                
             });
-            
         }) 
     }
 
+    // To display the users in JSON format
     if(url === '/users'){
  
         fs.readFile('names.txt', (err,data) => {
             
-            // console.log(data);
             if (err) {
                 res.writeHead(500, { "Content-Type": "text/html" });
                 res.end("<h1>Error reading file</h1>");
@@ -104,8 +99,6 @@ const requestHandler = (req, res) => {
                 `);
             }
             
-            // console.log(data.toString());
-            // console.log(names);            
             let arr = data.toString().split('\n');
             if(arr[arr.length-1]==='') arr.pop();
 
