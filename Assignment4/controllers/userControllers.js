@@ -17,10 +17,9 @@ exports.addUser = (req,res,next) => {
         fname: req.body.fname,
         lname: req.body.lname,
     })
-    .then((data) => console.log(data))
+    .then(() => res.redirect('/'))
     .catch((err) => console.log(err));
-
-    res.redirect('/');
+  
 }
 
 // Displays the users (in ascending order)
@@ -61,10 +60,9 @@ exports.editUser = (req,res,next) => {
             userid: req.body.id
         }}
     )
-    .then(() => console.log("User Updated"))
+    .then(() => res.redirect('/'))
     .catch(err => console.log(err))
-
-    res.redirect('/');
+    
 }
 
 // Deletes a given user
