@@ -14,7 +14,6 @@ exports.addUserForm = (req,res,next) => {
 exports.addUser = (req,res,next) => {
 
     User.create({
-        // id: req.body.id,
         fname: req.body.fname,
         lname: req.body.lname,
     })

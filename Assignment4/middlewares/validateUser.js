@@ -22,5 +22,6 @@ exports.validateUser = (req,res,next) => {
             </script>    
         `);
     }
+    
     next();
 }
